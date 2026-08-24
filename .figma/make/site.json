@@ -1,0 +1,10 @@
+{
+  "description": "This web application streamlines company branding by allowing users to easily upload logos and customize their digital presence, enhancing brand visibility.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
