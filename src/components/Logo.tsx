@@ -10,16 +10,46 @@ interface LogoProps {
 
 export function LogoSymbol({ color = "#080808", size = 36 }: { color?: string; size?: number }) {
   return (
+    // <svg
+    //   width={size}
+    //   height={Math.round(size * 1.18)}
+    //   viewBox="0 0 200 236"
+    //   fill="none"
+    //   xmlns="http://www.w3.org/2000/svg"
+    // >
+    //   <polygon points="97,10 8,178 86,196 97,76" fill={color} />
+    //   <polygon points="103,10 192,178 114,196 103,76" fill={color} />
+    // </svg>
     <svg
-      width={size}
-      height={Math.round(size * 1.18)}
-      viewBox="0 0 200 236"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <polygon points="97,10 8,178 86,196 97,76" fill={color} />
-      <polygon points="103,10 192,178 114,196 103,76" fill={color} />
-    </svg>
+  width={size}
+  height={Math.round(size * 1.18)}
+  viewBox="0 0 200 236"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="
+      M 98.0 10
+      L 91.5 11
+      L 10 178
+      L 27.5 178
+      L 99 123
+      Z
+    "
+    fill={color}
+  />
+  <path
+    d="
+      M 102.0 10
+      L 108.5 11
+      L 190 178
+      L 172.5 178
+      L 101 123
+      Z
+    "
+    fill={color}
+  />
+</svg>
   );
 }
 
