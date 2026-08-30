@@ -218,14 +218,172 @@ function StatCard({ num, suffix, label }: { num: number; suffix: string; label: 
 
 // ---------- Section components ----------
 
+function ParticleNetwork() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const parent = canvas?.parentElement;
+    if (!canvas || !parent) return;
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let animationFrameId = 0;
+    let particles: Array<{ x: number; y: number; vx: number; vy: number; radius: number; opacity: number }> = [];
+    const pointer = { x: 0, y: 0, influence: 0, clickPulse: 0 };
+
+    const setup = () => {
+      const rect = parent.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      canvas.style.width = `${rect.width}px`;
+      canvas.style.height = `${rect.height}px`;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      const area = rect.width * rect.height;
+      const count = area > 1400000
+        ? 50
+        : area > 900000
+          ? 40
+          : area > 450000
+            ? 30
+            : area > 220000
+              ? 20
+              : 15;
+
+      particles = Array.from({ length: count }, () => ({
+        x: Math.random() * rect.width,
+        y: Math.random() * rect.height,
+        vx: (Math.random() - 0.5) * 0.9,
+        vy: (Math.random() - 0.5) * 0.9,
+        radius: Math.random() * 2.3 + 1.1,
+        opacity: Math.random() * 0.5 + 0.3,
+      }));
+
+      pointer.x = rect.width * 0.5;
+      pointer.y = rect.height * 0.5;
+    };
+
+    const handlePointerMove = (event: PointerEvent) => {
+      const rect = parent.getBoundingClientRect();
+      pointer.x = event.clientX - rect.left;
+      pointer.y = event.clientY - rect.top;
+      pointer.influence = 1;
+    };
+
+    const handlePointerDown = (event: PointerEvent) => {
+      const rect = parent.getBoundingClientRect();
+      pointer.x = event.clientX - rect.left;
+      pointer.y = event.clientY - rect.top;
+      pointer.clickPulse = 1.8;
+    };
+
+    const handlePointerLeave = () => {
+      pointer.influence = 0;
+    };
+
+    const draw = () => {
+      const rect = parent.getBoundingClientRect();
+      ctx.clearRect(0, 0, rect.width, rect.height);
+
+      pointer.influence *= 0.97;
+      pointer.clickPulse *= 0.94;
+
+      particles.forEach((particle, index) => {
+        particle.vx += (Math.random() - 0.5) * 0.08;
+        particle.vy += (Math.random() - 0.5) * 0.08;
+
+        const dx = pointer.x - particle.x;
+        const dy = pointer.y - particle.y;
+        const distance = Math.hypot(dx, dy) || 1;
+
+        if (distance < 180) {
+          const interaction = (1 - distance / 180) * (pointer.influence * 0.8 + pointer.clickPulse * 1.1);
+          particle.vx += (dx / distance) * interaction * 0.18;
+          particle.vy += (dy / distance) * interaction * 0.18;
+
+          if (pointer.clickPulse > 0.15) {
+            const burst = (1 - distance / 150) * pointer.clickPulse;
+            particle.vx -= (dx / distance) * burst * 0.22;
+            particle.vy -= (dy / distance) * burst * 0.22;
+          }
+        }
+
+        particle.vx *= 0.985;
+        particle.vy *= 0.985;
+        particle.x += particle.vx;
+        particle.y += particle.vy;
+
+        if (particle.x <= 0 || particle.x >= rect.width) particle.vx *= -0.9;
+        if (particle.y <= 0 || particle.y >= rect.height) particle.vy *= -0.9;
+
+        particle.x = Math.min(Math.max(particle.x, 0), rect.width);
+        particle.y = Math.min(Math.max(particle.y, 0), rect.height);
+
+        ctx.beginPath();
+        ctx.fillStyle = `rgba(255,255,255,${particle.opacity})`;
+        ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+        ctx.fill();
+
+        for (let nextIndex = index + 1; nextIndex < particles.length; nextIndex += 1) {
+          const next = particles[nextIndex];
+          const nodeDx = particle.x - next.x;
+          const nodeDy = particle.y - next.y;
+          const nodeDistance = Math.sqrt(nodeDx * nodeDx + nodeDy * nodeDy);
+
+          if (nodeDistance < 120) {
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(255,255,255,${(1 - nodeDistance / 120) * 0.18})`;
+            ctx.lineWidth = 1;
+            ctx.moveTo(particle.x, particle.y);
+            ctx.lineTo(next.x, next.y);
+            ctx.stroke();
+          }
+        }
+      });
+
+      animationFrameId = window.requestAnimationFrame(draw);
+    };
+
+    setup();
+    draw();
+
+    const handleResize = () => setup();
+    window.addEventListener("pointermove", handlePointerMove);
+    window.addEventListener("pointerdown", handlePointerDown);
+    window.addEventListener("pointerleave", handlePointerLeave);
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.cancelAnimationFrame(animationFrameId);
+      window.removeEventListener("pointermove", handlePointerMove);
+      window.removeEventListener("pointerdown", handlePointerDown);
+      window.removeEventListener("pointerleave", handlePointerLeave);
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      <canvas ref={canvasRef} className="h-full w-full opacity-60" />
+    </div>
+  );
+}
+
 function Hero() {
   const lines = ["SOFTWARE", "ENGINEERED", "FOR WHAT'S", "NEXT."];
 
   return (
-    <section className="relative min-h-screen bg-[#080808] flex flex-col justify-end overflow-hidden">
+    <section className="relative min-h-screen bg-[#080808] flex flex-col justify-end overflow-hidden isolate">
+      <div className="absolute inset-0 " />
+      <ParticleNetwork />
+
       {/* Background logo — animated entrance */}
       <div
-        className="absolute top-1/2 right-[-5%] pointer-events-none select-none"
+        className="absolute top-1/2 right-[-5%] pointer-events-none select-none z-0"
         style={{ animation: "heroSymbolIn 2.4s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both" }}
       >
         <LogoSymbol color="#FFFFFF" size={680} />
