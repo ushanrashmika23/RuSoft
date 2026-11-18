@@ -5,9 +5,9 @@ export default function AdminSettings() {
   const [form, setForm] = useState({
     companyName: "RuSoft Technologies",
     tagline: "Software Engineered for What's Next.",
-    email: "hello@rusoft.io",
-    linkedin: "https://linkedin.com/company/rusoft-technologies",
-    github: "https://github.com/rusoft",
+    email: "hello@rusoft.studio",
+    linkedin: "https://linkedin.com",
+    github: "https://github.com/ushanrashmika23",
     twitter: "https://twitter.com/rusoft_tech",
     footerText: "We design and engineer digital products, intelligent systems, and scalable software for ambitious businesses around the world.",
     statsProjects: "50+",

@@ -7,7 +7,6 @@ const footerLinks = {
     { label: "Services", href: "/#services" },
     { label: "Approach", href: "/#approach" },
     { label: "About", href: "/#about" },
-    { label: "Insights", href: "/insights" },
     { label: "Contact", href: "/contact" },
   ],
   Services: [
@@ -42,14 +41,33 @@ export default function Footer() {
                 </span>
               </div>
             </div>
-            <p className="text-white/50 text-[14px] leading-relaxed max-w-[280px] mb-8">
+            <p className="text-white/50 text-[14px] leading-relaxed max-w-[280px] mb-6">
               We design and engineer digital products, intelligent systems, and scalable software for ambitious businesses around the world.
             </p>
+            <div className="space-y-1.5 mb-6 text-[13px] text-white/60">
+              <p className="flex items-center gap-2">
+                <span className="mono-label text-white/30 text-[10px]">LOCATION</span>
+                <span>Colombo, Sri Lanka</span>
+              </p>
+              <p className="flex items-center gap-2">
+                <span className="mono-label text-white/30 text-[10px]">EMAIL</span>
+                <a href="mailto:hello@rusoft.studio" className="hover:text-white transition-colors underline underline-offset-2">
+                  hello@rusoft.studio
+                </a>
+              </p>
+              <p className="flex items-center gap-2">
+                <span className="mono-label text-white/30 text-[10px]">WEB</span>
+                <a href="https://ushanrashmika.me" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors underline underline-offset-2">
+                  ushanrashmika.me
+                </a>
+              </p>
+            </div>
             <div className="flex items-center gap-5">
               {[
-                { label: "LI", href: "https://linkedin.com" },
-                { label: "GH", href: "https://github.com" },
-                { label: "TW", href: "https://twitter.com" },
+                { label: "ME", href: "https://ushanrashmika.me" },
+                { label: "GH", href: "https://github.com/ushanrashmika23" },
+                { label: "LI", href: "https://linkedin.com/in/ushanrashmika23" },
+                { label: "X", href: "https://x.com/ushanrashmika23" },
               ].map((s) => (
                 <a
                   key={s.label}

@@ -8,11 +8,11 @@ interface Project {
 }
 
 const initialProjects: Project[] = [
-  { id: 1, title: "Nexus Education", client: "Nexus Learning Group", industry: "EdTech", category: "Product Engineering", status: "Published", date: "Aug 12, 2025", featured: true },
-  { id: 2, title: "Stratify", client: "Stratify Inc.", industry: "Productivity", category: "Mobile Applications", status: "Published", date: "Aug 1, 2025", featured: true },
-  { id: 3, title: "Meridian Analytics", client: "Meridian Capital", industry: "FinTech", category: "Cloud Architecture", status: "Published", date: "Jul 20, 2025", featured: true },
-  { id: 4, title: "Velox Logistics", client: "Velox GmbH", industry: "Logistics", category: "Business Systems", status: "Draft", date: "Jul 10, 2025", featured: false },
-  { id: 5, title: "Aria Health", client: "Aria Health Systems", industry: "Healthcare", category: "AI & Automation", status: "Published", date: "Jun 28, 2025", featured: false },
+  { id: 1, title: "Master Ink Tattoo Portfolio", client: "Master Ink Tattoo Studio", industry: "Creative & Lifestyle", category: "Web & Mobile Applications", status: "Published", date: "Oct 20, 2026", featured: true },
+  { id: 2, title: "Leafy IoT: AI Agriculture Monitoring", client: "Leafy Agritech", industry: "AgriTech & IoT", category: "Product Engineering", status: "Published", date: "Oct 24, 2026", featured: true },
+  { id: 3, title: "Bitcoin Trend Prediction", client: "Quantitative Research Lab", industry: "FinTech & AI", category: "AI & Automation", status: "Published", date: "Oct 24, 2026", featured: true },
+  { id: 4, title: "Beyond Craft Tattoo", client: "Beyond Craft Studio", industry: "Creative & Lifestyle", category: "Web & Mobile Applications", status: "Published", date: "Oct 28, 2026", featured: false },
+  { id: 5, title: "Kiri Kopi Caffee", client: "Kiri Kopi Caffee", industry: "Hospitality & F&B", category: "Web & Mobile Applications", status: "Published", date: "Oct 28, 2026", featured: false },
 ];
 
 type View = "list" | "edit" | "new";

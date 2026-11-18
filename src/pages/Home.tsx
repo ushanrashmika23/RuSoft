@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router";
 import { LogoSymbol } from "../components/Logo";
+import { projectsData } from "../data/projects";
 
 // ---------- Scroll reveal hook ----------
 function useReveal() {
@@ -69,38 +70,7 @@ const services = [
   },
 ];
 
-const caseStudies = [
-  {
-    slug: "nexus-education",
-    num: "01",
-    label: "Education Platform",
-    title: "Nexus Education",
-    client: "Nexus Learning Group",
-    industry: "EdTech",
-    desc: "A comprehensive learning management system serving 120,000 students across 14 countries. Built for performance, accessibility, and pedagogical depth.",
-    img: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1400&h=900&fit=crop&auto=format",
-  },
-  {
-    slug: "stratify-life",
-    num: "02",
-    label: "Life Management Platform",
-    title: "Stratify",
-    client: "Stratify Inc.",
-    industry: "Productivity",
-    desc: "A cross-platform productivity application combining AI scheduling, habit tracking, and deep work sessions. 280,000 active users at launch.",
-    img: "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=1400&h=900&fit=crop&auto=format",
-  },
-  {
-    slug: "meridian-finance",
-    num: "03",
-    label: "Financial Analytics",
-    title: "Meridian Analytics",
-    client: "Meridian Capital",
-    industry: "FinTech",
-    desc: "Real-time portfolio analytics and risk modeling platform processing 4 million financial events per second across global markets.",
-    img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1400&h=900&fit=crop&auto=format",
-  },
-];
+const caseStudies = projectsData.slice(0, 3);
 
 const approach = [
   { num: "01", title: "Discover", desc: "Deep research into your business model, users, technical landscape, and competitive context." },
@@ -133,10 +103,10 @@ const testimonials = [
 ];
 
 const stats = [
-  { value: "50+", label: "Projects Delivered" },
-  { value: "30+", label: "Global Clients" },
-  { value: "15", label: "Countries" },
-  { value: "40+", label: "Technologies" },
+  { value: "15+", label: "Projects Delivered" },
+  { value: "7+", label: "Global Clients" },
+  { value: "5", label: "Countries" },
+  { value: "20+", label: "Technologies" },
 ];
 
 const insights = [
@@ -396,7 +366,7 @@ function Hero() {
       >
         <div className="max-w-[1440px] mx-auto px-6 lg:px-12 flex items-center justify-between">
           <span className="mono-label text-white/30">RUSOFT TECHNOLOGIES / SOFTWARE ENGINEERING</span>
-          <span className="mono-label text-white/30 hidden sm:block">EST. 2018</span>
+          <span className="mono-label text-white/30 hidden sm:block">EST. 2025</span>
         </div>
       </div>
 
@@ -571,16 +541,16 @@ function SelectedWork() {
               >
                 {/* Image */}
                 <div
-                  className={`relative overflow-hidden bg-[#F5F5F3] h-[280px] lg:h-[480px] ${
+                  className={`relative overflow-hidden bg-[#F5F5F3] flex items-center justify-center min-h-[260px] lg:min-h-[440px] ${
                     i % 2 === 1 ? "lg:order-2" : ""
                   }`}
                 >
                   <img
                     src={cs.img}
                     alt={cs.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    className="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-700"
                   />
-                  <div className="absolute inset-0 bg-[#080808]/10 group-hover:bg-[#080808]/0 transition-colors duration-500" />
+                  <div className="absolute inset-0 bg-[#080808]/5 group-hover:bg-[#080808]/0 transition-colors duration-500 pointer-events-none" />
                 </div>
 
                 {/* Content */}
@@ -688,46 +658,132 @@ function Approach() {
   );
 }
 
-function Founder() {
+function AboutMe() {
   const ref = useReveal();
   return (
-    <section className="bg-[#F5F5F3] py-24 lg:py-36">
+    <section id="about" className="bg-[#F5F5F3] py-24 lg:py-36 border-b border-[#E5E5E5]">
       <div className="max-w-[1440px] mx-auto px-6 lg:px-12">
         <div ref={ref} className="reveal grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
           {/* Portrait */}
           <div className="relative">
-            <img
-              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=960&fit=crop&auto=format"
-              alt="Ruslan Azimov, Founder & Chief Engineer"
-              className="w-full aspect-[4/5] object-cover object-top"
-            />
-            <div className="absolute bottom-0 left-0 right-0 h-px bg-[#E5E5E5]" />
+            <div className="overflow-hidden bg-white border border-[#E5E5E5] aspect-square max-w-[540px] mx-auto">
+              <img
+                src="/founder.png"
+                alt="Ushan Rashmika, Founder & Lead Engineer"
+                className="w-full h-full object-cover object-center"
+              />
+            </div>
+            <div className="mt-4 flex items-center justify-between px-2">
+              <span className="mono-label text-[#707070]">Colombo, Sri Lanka</span>
+              <a
+                href="https://ushanrashmika.me"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mono-label text-[#080808] hover:underline"
+              >
+                ushanrashmika.me ↗
+              </a>
+            </div>
           </div>
 
           {/* Bio */}
           <div className="flex flex-col justify-between h-full">
             <div>
-              <p className="mono-label mb-6">Built by Engineers.</p>
+              <p className="mono-label mb-4">Founder & Lead Software Engineer</p>
               <h2
-                className="display-heading text-[#080808] mb-6"
+                className="display-heading text-[#080808] mb-2"
                 style={{ fontSize: "clamp(36px, 4vw, 56px)" }}
               >
-                Ruslan Azimov
+                Ushan Rashmika
               </h2>
-              <p className="mono-label text-[#707070] mb-8">Founder & Chief Engineer</p>
+              <p className="mono-label text-[#707070] mb-8">RuSoft Technologies</p>
 
+              <p className="text-[#080808] text-[18px] font-medium leading-relaxed mb-5">
+                I am Ushan Rashmika, a software engineer and the founder of RuSoft Technologies, based in Colombo, Sri Lanka.
+              </p>
               <p className="text-[#707070] text-[16px] leading-relaxed mb-5">
-                Over 15 years building software systems for companies across Europe, the Middle East, and Asia. Started RuSoft with a single conviction: that engineering discipline — not just execution speed — is what separates software that lasts from software that breaks.
+                I specialize in engineering modern full-stack web and mobile applications, smart IoT embedded devices with microcontrollers (ESP32), cloud infrastructure, and deep learning models for predictive time-series forecasting.
               </p>
-              <p className="text-[#707070] text-[16px] leading-relaxed mb-10">
-                Before founding RuSoft, Ruslan led engineering teams at two fintech companies and contributed to open-source infrastructure used by millions of developers worldwide. Every client engagement is personally reviewed.
+              <p className="text-[#707070] text-[16px] leading-relaxed mb-8">
+                Driven by technical discipline and clean digital design, I build software that not only looks exceptional but performs reliably under scale and remains straightforward to maintain over the long term.
               </p>
+
+              {/* Direct Info */}
+              <div className="grid sm:grid-cols-2 gap-4 mb-8 p-5 bg-white border border-[#E5E5E5]">
+                <div>
+                  <p className="mono-label text-[#707070] text-[11px] mb-1">EMAIL</p>
+                  <a
+                    href="mailto:hello@rusoft.studio"
+                    className="text-[14px] font-semibold text-[#080808] hover:underline"
+                  >
+                    hello@rusoft.studio
+                  </a>
+                </div>
+                <div>
+                  <p className="mono-label text-[#707070] text-[11px] mb-1">LOCATION</p>
+                  <p className="text-[14px] font-semibold text-[#080808]">
+                    Colombo, Sri Lanka
+                  </p>
+                </div>
+                <div>
+                  <p className="mono-label text-[#707070] text-[11px] mb-1">WEBSITE</p>
+                  <a
+                    href="https://ushanrashmika.me"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[14px] font-semibold text-[#080808] hover:underline flex items-center gap-1"
+                  >
+                    <span>ushanrashmika.me</span>
+                    <span>↗</span>
+                  </a>
+                </div>
+                <div>
+                  <p className="mono-label text-[#707070] text-[11px] mb-1">HANDLE</p>
+                  <p className="text-[14px] font-semibold text-[#080808]">
+                    @ushanrashmika23
+                  </p>
+                </div>
+              </div>
+
+              {/* Social Channels */}
+              <div className="mb-8">
+                <p className="mono-label text-[#080808] mb-3">Social & Profiles</p>
+                <div className="flex flex-wrap gap-2.5">
+                  {[
+                    { label: "Website", value: "ushanrashmika.me", href: "https://ushanrashmika.me" },
+                    { label: "GitHub", value: "ushanrashmika23", href: "https://github.com/ushanrashmika23" },
+                    { label: "LinkedIn", value: "ushanrashmika23", href: "https://linkedin.com/in/ushanrashmika23" },
+                    { label: "X / Twitter", value: "ushanrashmika23", href: "https://x.com/ushanrashmika23" },
+                  ].map((s) => (
+                    <a
+                      key={s.label}
+                      href={s.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 bg-white border border-[#E5E5E5] px-3.5 py-2 hover:border-[#080808] transition-colors group"
+                    >
+                      <span className="mono-label text-[#707070] group-hover:text-[#080808] text-[11px]">{s.label}:</span>
+                      <span className="text-[13px] font-medium text-[#080808]">{s.value}</span>
+                      <span className="text-[11px] text-[#707070] group-hover:translate-x-0.5 transition-transform">↗</span>
+                    </a>
+                  ))}
+                </div>
+              </div>
 
               <div className="mb-10">
-                <p className="mono-label text-[#080808] mb-4">Areas of Expertise</p>
+                <p className="mono-label text-[#080808] mb-4">Core Technical Focus</p>
                 <div className="flex flex-wrap gap-2">
-                  {["System Architecture", "Cloud Infrastructure", "Team Leadership", "AI Engineering", "Product Strategy"].map((e) => (
-                    <span key={e} className="mono-label bg-[#E5E5E5] text-[#080808] px-3 py-1.5">{e}</span>
+                  {[
+                    "Full-Stack Web & Mobile",
+                    "Next.js & React Native",
+                    "IoT & ESP32 Embedded Systems",
+                    "Deep Learning & AI",
+                    "Cloud & REST APIs",
+                    "Database Architecture",
+                  ].map((e) => (
+                    <span key={e} className="mono-label bg-[#E5E5E5] text-[#080808] px-3 py-1.5">
+                      {e}
+                    </span>
                   ))}
                 </div>
               </div>
@@ -735,8 +791,9 @@ function Founder() {
 
             <div className="flex items-center gap-6 border-t border-[#E5E5E5] pt-8">
               {[
-                { label: "LinkedIn", href: "https://linkedin.com" },
-                { label: "GitHub", href: "https://github.com" },
+                { label: "Website", href: "https://ushanrashmika.me" },
+                { label: "GitHub", href: "https://github.com/ushanrashmika23" },
+                { label: "Email", href: "mailto:hello@rusoft.studio" },
                 { label: "Contact", href: "/contact" },
               ].map((link) => (
                 <a
@@ -758,35 +815,26 @@ function Founder() {
 function About() {
   const ref = useReveal();
   return (
-    <section id="about" className="py-24 lg:py-36">
+    <section className="py-24 lg:py-36 border-b border-[#E5E5E5]">
       <div className="max-w-[1440px] mx-auto px-6 lg:px-12">
-        <div className="grid lg:grid-cols-2 gap-16 items-start border-b border-[#E5E5E5] pb-24 mb-24">
+        <div className="grid lg:grid-cols-2 gap-16 items-start">
           <div ref={ref} className="reveal">
-            <p className="mono-label mb-3">About the Company</p>
+            <p className="mono-label mb-3">About the Studio</p>
             <h2 className="display-heading text-[48px] lg:text-[64px] text-[#080808]">
               Who We Are
             </h2>
           </div>
           <div>
             <p className="text-[#707070] text-[16px] lg:text-[18px] leading-relaxed mb-6">
-              RuSoft Technologies is a global software engineering company founded on the belief that the most valuable technology companies are built on engineering discipline — not just speed or aesthetics.
+              RuSoft Technologies is an independent software studio founded on the belief that enduring digital products are built on engineering discipline — not just speed or surface aesthetics.
             </p>
             <p className="text-[#707070] text-[16px] leading-relaxed mb-6">
-              We work with scale-ups, enterprise teams, and ambitious founders who require software that performs under pressure, grows without collapsing, and can be maintained by the humans who inherit it.
+              We collaborate with modern businesses, startups, and creative brands requiring software that performs reliably under real-world usage, scales cleanly, and remains intuitive to maintain.
             </p>
             <p className="text-[#707070] text-[16px] leading-relaxed">
-              Our clients include companies in EdTech, FinTech, SaaS, logistics, and government. We operate across time zones and build teams that integrate with yours.
+              From responsive client portfolios and custom content platforms to embedded IoT hardware and machine learning systems, every project is delivered with obsessive attention to craftsmanship.
             </p>
           </div>
-        </div>
-
-        {/* Stats — animated counters */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-0 border-l border-t border-[#E5E5E5]">
-          {stats.map((stat) => {
-            const num = parseInt(stat.value.replace(/\D/g, ""), 10);
-            const suffix = stat.value.replace(/[0-9]/g, "");
-            return <StatCard key={stat.label} num={num} suffix={suffix} label={stat.label} />;
-          })}
         </div>
       </div>
     </section>
@@ -912,10 +960,9 @@ export default function Home() {
       <SelectedWork />
       <EngineeringPhilosophy />
       <Approach />
-      <Founder />
+      <AboutMe />
       <About />
       <Testimonials />
-      <InsightsPreview />
       <ContactCTA />
     </>
   );

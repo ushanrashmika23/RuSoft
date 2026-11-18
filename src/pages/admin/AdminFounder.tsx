@@ -3,14 +3,14 @@ import { useState } from "react";
 export default function AdminFounder() {
   const [saved, setSaved] = useState(false);
   const [form, setForm] = useState({
-    name: "Ruslan Azimov",
-    role: "Founder & Chief Engineer",
-    shortBio: "Over 15 years building software systems for companies across Europe, the Middle East, and Asia.",
-    fullBio: "Ruslan Azimov founded RuSoft Technologies with a single conviction: that engineering discipline — not just execution speed — is what separates software that lasts from software that breaks.\n\nBefore founding RuSoft, Ruslan led engineering teams at two fintech companies and contributed to open-source infrastructure used by millions of developers worldwide. He has spoken at engineering conferences across Europe and Asia, and writes on topics ranging from distributed systems to engineering management.\n\nEvery client engagement at RuSoft is personally reviewed by Ruslan before the company commits.",
-    expertise: "System Architecture, Cloud Infrastructure, Team Leadership, AI Engineering, Product Strategy",
-    linkedin: "https://linkedin.com/in/ruslan-azimov",
-    github: "https://github.com/ruslan-azimov",
-    email: "ruslan@rusoft.io",
+    name: "Ushan Rashmika",
+    role: "Founder & Lead Software Engineer",
+    shortBio: "Architecting high-performance software systems with engineering precision, based in Colombo, Sri Lanka.",
+    fullBio: "Ushan Rashmika founded RuSoft Technologies with a commitment to high-standard craft: software that not only looks exceptional but performs seamlessly under scale.\n\nHis work spans end-to-end full-stack web and mobile development, embedded IoT telemetry devices with microcontrollers (ESP32), cloud infrastructure, and deep learning models for predictive time-series forecasting.\n\nEvery client engagement at RuSoft is personally reviewed to ensure production reliability, scalability, and technical discipline.",
+    expertise: "Full-Stack Engineering, Next.js & React Native, IoT & ESP32 Embedded Systems, Deep Learning & AI, Cloud & REST APIs, Database Architecture",
+    linkedin: "https://linkedin.com/in/ushanrashmika23",
+    github: "https://github.com/ushanrashmika23",
+    email: "hello@rusoft.studio",
     display: true,
   });
 
@@ -40,9 +40,9 @@ export default function AdminFounder() {
           <p className={labelClass}>Profile Photo</p>
           <div className="aspect-[3/4] bg-[#F5F5F3] border border-[#E5E5E5] overflow-hidden">
             <img
-              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=500&fit=crop&auto=format"
+              src="/founder.png"
               alt="Founder"
-              className="w-full h-full object-cover object-top"
+              className="w-full h-full object-cover object-center"
             />
           </div>
           <div className="mt-3 border border-dashed border-[#E5E5E5] p-4 text-center cursor-pointer hover:border-[#707070] transition-colors">

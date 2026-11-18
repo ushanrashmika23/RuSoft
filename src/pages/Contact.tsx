@@ -206,26 +206,31 @@ export default function Contact() {
           <div className="space-y-12">
             <div>
               <p className="mono-label text-[#080808] mb-4">Direct Contact</p>
-              <a href="mailto:hello@rusoft.io" className="text-[16px] font-medium text-[#080808] hover:opacity-60 transition-opacity block mb-2">
-                hello@rusoft.io
+              <a href="mailto:hello@rusoft.studio" className="text-[16px] font-medium text-[#080808] hover:opacity-60 transition-opacity block mb-2">
+                hello@rusoft.studio
               </a>
+              <p className="mono-label text-[#707070] text-[12px] mb-2">
+                Colombo, Sri Lanka
+              </p>
               <p className="text-[#707070] text-[13px] leading-relaxed">
                 Response time: within 2 business days.
               </p>
             </div>
 
             <div className="border-t border-[#E5E5E5] pt-10">
-              <p className="mono-label text-[#080808] mb-4">Social</p>
+              <p className="mono-label text-[#080808] mb-4">Social & Links</p>
               <div className="space-y-3">
                 {[
-                  { label: "LinkedIn", href: "https://linkedin.com" },
-                  { label: "GitHub", href: "https://github.com" },
-                  { label: "Twitter / X", href: "https://twitter.com" },
+                  { label: "Personal Site", handle: "ushanrashmika.me", href: "https://ushanrashmika.me" },
+                  { label: "GitHub", handle: "@ushanrashmika23", href: "https://github.com/ushanrashmika23" },
+                  { label: "LinkedIn", handle: "@ushanrashmika23", href: "https://linkedin.com/in/ushanrashmika23" },
+                  { label: "X / Twitter", handle: "@ushanrashmika23", href: "https://x.com/ushanrashmika23" },
                 ].map((s) => (
                   <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer"
-                    className="flex items-center gap-2 mono-label text-[#707070] hover:text-[#080808] transition-colors"
+                    className="flex items-center justify-between mono-label text-[#707070] hover:text-[#080808] transition-colors py-1 border-b border-[#F0F0F0]"
                   >
-                    {s.label} →
+                    <span>{s.label}</span>
+                    <span className="text-[12px] font-medium text-[#080808]">{s.handle} ↗</span>
                   </a>
                 ))}
               </div>
